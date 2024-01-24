@@ -1,4 +1,4 @@
 const users = require('./users');
-const cards = require('./movies');
+const movies = require('./movies');
 
-module.exports = { users, cards };
+module.exports = { users, movies };

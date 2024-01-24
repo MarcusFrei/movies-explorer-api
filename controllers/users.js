@@ -22,28 +22,6 @@ const login = (req, res, next) => {
     });
 };
 
-const getUsers = (req, res, next) => {
-  User.find({})
-    .then((users) => res.send({ users }))
-    .catch(next);
-};
-
-const getUserById = (req, res, next) => {
-  User.findById(req.params.userId)
-    .then((user) => {
-      if (user) {
-        res.send(user);
-      } else {
-        next(new NotFound('User with current _id can\'t be found!'));
-      }
-    })
-    .catch((err) => {
-      if (err.name === 'ValidationError') {
-        next(new BadRequest('Bad request!'));
-      } else next(err);
-    });
-};
-
 const getMe = (req, res, next) => {
   User.findById(req.user.id)
     .then((user) => {
@@ -107,38 +85,9 @@ const updateUserInfo = (req, res, next) => {
     });
 };
 
-const updateAvatar = (req, res, next) => {
-  const { avatar } = req.body;
-  User.findByIdAndUpdate(
-    req.user.id,
-    { avatar },
-    { new: true, runValidators: true },
-  )
-    .then((user) => {
-      if (user) {
-        res.send({ user });
-      } else {
-        next(new NotFound('User with current _id can\'t be found!'));
-      }
-    })
-    .catch((err) => {
-      if (err.name === 'ValidationError') {
-        next(new BadRequest('Bad request!'));
-      } else next(err);
-    });
-};
-
 module.exports = {
-  getUsers,
-  getUserById,
   createUser,
   updateUserInfo,
-  updateAvatar,
   login,
   getMe,
 };
-
-// users- 400, 500
-// users/:userId - 400, 500
-// users/me - 500
-// /me/avatar - 400,404,500

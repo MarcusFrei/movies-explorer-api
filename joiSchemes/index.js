@@ -21,7 +21,7 @@ const updateUserScheme = {
   }),
 };
 
-const createCardScheme = {
+const createMovieScheme = {
   body: Joi.object().keys({
     country: Joi.string().required(),
     director: Joi.string().min(2).max(45).required(),
@@ -37,11 +37,9 @@ const createCardScheme = {
   }),
 };
 
-module.exports = createCardScheme;
-
-const cardIdScheme = {
+const movieIdScheme = {
   params: Joi.object().keys({
-    cardId: Joi.string().length(24).hex().required(),
+    movieId: Joi.string().length(24).hex().required(),
   }),
 };
 
@@ -49,6 +47,6 @@ module.exports = {
   signUpScheme,
   updateUserScheme,
   signInScheme,
-  createCardScheme,
-  cardIdScheme,
+  createMovieScheme,
+  movieIdScheme,
 };

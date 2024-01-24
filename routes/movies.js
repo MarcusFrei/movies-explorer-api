@@ -1,12 +1,12 @@
 const router = require('express').Router();
 const { celebrate } = require('celebrate');
 const {
-  getCards, createCard, deleteCard,
-} = require('../controllers/cards');
-const { cardIdScheme, createCardScheme } = require('../joiSchemes');
+  getMovies, createMovie, deleteMovie,
+} = require('../controllers/movies');
+const { movieIdScheme, createMovieScheme } = require('../joiSchemes');
 
-router.get('/', getCards);
-router.post('/', celebrate(createCardScheme), createCard);
-router.delete('/:cardId', celebrate(cardIdScheme), deleteCard);
+router.get('/', getMovies);
+router.post('/', celebrate(createMovieScheme), createMovie);
+router.delete('/:movieId', celebrate(movieIdScheme), deleteMovie);
 
 module.exports = router;
