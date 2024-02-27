@@ -1,4 +1,4 @@
-const { Joi } = require('celebrate');
+const { Joi } = require("celebrate");
 
 const signUpScheme = {
   body: Joi.object().keys({
@@ -24,7 +24,7 @@ const updateUserScheme = {
 const createMovieScheme = {
   body: Joi.object().keys({
     country: Joi.string().required(),
-    director: Joi.string().min(2).max(45).required(),
+    director: Joi.string().min(2).max(100).required(),
     duration: Joi.number().required(),
     year: Joi.string().required(),
     description: Joi.string().required(),
